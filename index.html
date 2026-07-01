@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1280">
+  <meta name="viewport" content="width=1280, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <title>Wei-Fang Chang Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,13 +49,13 @@
     #nav-prev:hover, #nav-next:hover { color: var(--green); border-color: var(--green); }
 
     /* main */
-    #main { display: flex; flex-direction: row; width: 100vw; height: 100vh; overflow-x: scroll; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+    #main { display: flex; flex-direction: row; width: 100vw; height: 720px; overflow-x: scroll; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
     #main::-webkit-scrollbar { display: none; }
 
     /* every slide */
     .s-landing, .s-about, .s-proj, .s-tech, .s-end {
       width: 100vw; min-width: 100vw; max-width: 100vw;
-      height: 100vh; flex-shrink: 0; scroll-snap-align: start; overflow: hidden;
+      height: 720px; flex-shrink: 0; scroll-snap-align: start; overflow: hidden;
     }
 
     /* ─── LANDING ─── */
@@ -142,7 +142,7 @@
     .plink.dim:hover { color: var(--text); }
 
     /* image grid */
-    .proj-imgs { display: grid; gap: 3px; background: var(--border); overflow: hidden; height: 100vh; }
+    .proj-imgs { display: grid; gap: 3px; background: var(--border); overflow: hidden; height: 720px; }
     .proj-imgs > * { min-width: 0; min-height: 0; overflow: hidden; }
     .proj-imgs img, .proj-imgs iframe { width: 100%; height: 100%; object-fit: cover; display: block; border: none; background: var(--bg); }
     .l1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
