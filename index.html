@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1280, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=1280, shrink-to-fit=no">
   <title>Wei-Fang Chang Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -466,7 +466,7 @@
   <div class="proj-imgs l3b">
     <div class="i1 vid-cell">
       <img class="vid-img" src="https://cdn.prod.website-files.com/6624a4571a155b525586e271/69b9c50bfbf7dd1f08dafa25_Artboard%2022-100.jpg" alt="">
-      <iframe src="https://player.vimeo.com/video/1200994949?title=0&byline=0&portrait=0" allow="fullscreen" allowfullscreen></iframe>
+      <iframe src="https://player.vimeo.com/video/1200994949?title=0&byline=0&portrait=0&muted=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
       <div class="vid-url-print">See Video ↗  vimeo.com/1200994949</div>
     </div>
     <img class="i2" src="https://cdn.prod.website-files.com/6624a4571a155b525586e271/69b9c335b232c12f041799ec_Artboard%2020-100.jpg" alt="">
@@ -497,7 +497,7 @@
   <div class="proj-imgs l3b">
     <div class="i1 vid-cell">
       <img class="vid-img" src="https://cdn.prod.website-files.com/6624a4571a155b525586e271/6624a86bf971285a237c3509_Screenshot%202024-04-18%20175836.png" alt="">
-      <iframe src="https://player.vimeo.com/video/1000801329?title=0&byline=0&portrait=0" allow="fullscreen" allowfullscreen></iframe>
+      <iframe src="https://player.vimeo.com/video/1000801329?title=0&byline=0&portrait=0&muted=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
       <div class="vid-url-print">See Video ↗  vimeo.com/1000801329</div>
     </div>
     <img class="i2" src="https://cdn.prod.website-files.com/6624a4571a155b525586e271/671b309d60e53177f76ddf1a_%E5%B7%A5%E4%BD%9C%E5%8D%80%E5%9F%9F%201%20%E8%A4%87%E6%9C%AC%202.png" alt="">
@@ -527,7 +527,7 @@
   <div class="proj-imgs l3b">
     <div class="i1 vid-cell">
       <img class="vid-img" src="https://cdn.prod.website-files.com/6624a4571a155b525586e271/6851d0bf3aca85e18402c0f5_web.png" alt="">
-      <iframe src="https://player.vimeo.com/video/1086261098?title=0&byline=0&portrait=0" allow="fullscreen" allowfullscreen></iframe>
+      <iframe src="https://player.vimeo.com/video/1086261098?title=0&byline=0&portrait=0&muted=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
       <div class="vid-url-print">See Video ↗  vimeo.com/1086261098</div>
     </div>
     <img class="i2" src="https://cdn.prod.website-files.com/6624a4571a155b525586e271/683683fc9a961da7345d38f7_Artboard%201.png" alt="">
@@ -606,7 +606,7 @@
   <div class="proj-imgs l3b">
     <div class="i1 vid-cell">
       <img class="vid-img" src="https://cdn.prod.website-files.com/6624a4571a155b525586e271/681c24dc0e3a373c59879988_Artboard%205%20copy-100.jpg" alt="">
-      <iframe src="https://player.vimeo.com/video/1179676374?title=0&byline=0&portrait=0" allow="fullscreen" allowfullscreen></iframe>
+      <iframe src="https://player.vimeo.com/video/1179676374?title=0&byline=0&portrait=0&muted=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
       <div class="vid-url-print">See Video ↗  vimeo.com/1179676374</div>
     </div>
     <img class="i2" src="https://cdn.prod.website-files.com/6624a4571a155b525586e271/683f7a27c982abbe816a5f4f_Artboard%201%20copy%2015-100.jpg" alt="" style="object-position: center bottom;">
@@ -686,7 +686,7 @@
   <div class="proj-imgs l3b">
     <div class="i1 vid-cell">
       <img class="vid-img" src="https://cdn.prod.website-files.com/6624a4571a155b525586e271/67594e15ef51f09d7de40eaf_Artboard%201.png" alt="">
-      <iframe src="https://player.vimeo.com/video/1060249825?title=0&byline=0&portrait=0" allow="fullscreen" allowfullscreen></iframe>
+      <iframe src="https://player.vimeo.com/video/1060249825?title=0&byline=0&portrait=0&muted=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
       <div class="vid-url-print">See Video ↗  vimeo.com/1060249825</div>
     </div>
     <img class="i2" src="https://cdn.prod.website-files.com/6624a4571a155b525586e271/67594b4921b647afd3801320_Comp%201_8.gif" alt="">
@@ -930,6 +930,46 @@
     s.src = PDFJS_CDN;
     s.onload = initGalleries;
     document.head.appendChild(s);
+  })();
+
+  // ── Vimeo autoplay on slide enter ──
+  (function() {
+    const VIMEO_API = 'https://player.vimeo.com/api/player.js';
+    function initVimeo() {
+      const main = document.getElementById('main');
+      if (!main) return;
+      const slides = main.querySelectorAll('.s-proj, .s-landing, .s-about, .s-tech, .s-end');
+      const players = new Map();
+
+      // Wrap each iframe with Vimeo Player
+      document.querySelectorAll('iframe[src*="player.vimeo.com"]').forEach(iframe => {
+        const p = new Vimeo.Player(iframe);
+        players.set(iframe, p);
+      });
+
+      // Observe which slide is in view
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const iframes = entry.target.querySelectorAll('iframe[src*="player.vimeo.com"]');
+          iframes.forEach(iframe => {
+            const p = players.get(iframe);
+            if (!p) return;
+            if (entry.isIntersecting) {
+              p.setMuted(true).then(() => p.play().catch(() => {}));
+            } else {
+              p.pause().catch(() => {});
+            }
+          });
+        });
+      }, { root: main, threshold: 0.5 });
+
+      slides.forEach(slide => obs.observe(slide));
+    }
+
+    const vs = document.createElement('script');
+    vs.src = VIMEO_API;
+    vs.onload = initVimeo;
+    document.head.appendChild(vs);
   })();
 
 </script>
